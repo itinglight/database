@@ -1,0 +1,47 @@
+create database tsgl
+
+use tsgl
+
+create table book
+(图书编号 char(8) primary key,
+图书名称 varchar(20),
+作者 varchar(8),
+出版社名称 varchar(30),
+出版日期 datetime,
+定价 float(2))
+
+create table reader
+(借书证号  char(6) primary key,
+姓名 varchar(8),
+性别 char(2),
+年龄 int,
+联系电话 char(11))
+
+create table borrow
+(借书证号  char(6),
+图书编号 char(8),
+借阅时间 datetime,
+还书日期 datetime,  primary  key(借书证号,图书编号))
+
+
+insert into book values('GBZT0001','计算机网络技术','王靖','清华大学出版社','2011-9-01',28.00)
+insert into book values('GBZT0002','数据库应用技术','李奇','人民邮电出版社','2010-1-01',32.80)
+insert into book values('GBZT0003','大学英语','刘云','机械工业出版社','2012-2-01',22.00)
+insert into book values('GBZT0004','Web技术','孙楠','哈尔滨工业大学出版社','2011-6-01',25.60)
+insert into book values('GBZT0005','操作系统基础','吴晓丹','科学出版社','2010-1-01',30.00)
+insert into book values('GBZT0006','计算机安全技术','赵小乐','高等教育出版社','2011-3-01',33.50)
+
+insert into reader values('JY0001','孙小雨','女',20,'13812103230')
+insert into reader values('JY0002','李立华','男',25,'13713153890')
+insert into reader values('JY0003','于娟娟','女',19,'15923173651')
+insert into reader values('JY0004','周新','男',21,'15856123213')
+insert into reader values('JY0005','张彤','女',23,'15052212666')
+insert into reader values('JY0006','胡东','男',18,'15256987233')
+
+
+insert into borrow values('JY0001','GBZT0003','2011-9-25','2011-11-12')
+insert into borrow (借书证号,图书编号,借阅时间) values('JY0002','GBZT0002','2011-10-23')
+insert into borrow values('JY0003','GBZT0005','2012-2-26','2012-3-28')
+insert into borrow values('JY0004','GBZT0006','2011-11-2','2011-12-12')
+insert into borrow (借书证号,图书编号,借阅时间) values('JY0005','GBZT0004','2012-5-15')
+insert into borrow (借书证号,图书编号,借阅时间) values('JY0006','GBZT0001','2012-5-9')
