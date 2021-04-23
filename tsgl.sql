@@ -168,7 +168,7 @@ insert into borrow (借书证号,图书编号,借阅时间) values('JY0006','GBZ
     from book;
 # 8、查询book表中图书的名称，要求显示格式如“图书名称为：大学英语“。
     #MySQL
-    select concat("图书名称为:",图书名称) as 图书名称
+    select concat('图书名称为:',图书名称) as 图书名称
     from book;
     #sql server
 # 9、查询book表中图书的最高定价、最低价格和平均定价。
@@ -180,7 +180,7 @@ insert into borrow (借书证号,图书编号,借阅时间) values('JY0006','GBZ
 # 11、查询book表中图书名为《大学英语》的出版社和定价。
     select 出版社名称,定价
     from book
-    where 图书名称="大学英语";
+    where 图书名称='大学英语';
 # 12、查询book表中图书的价格高于50元的图书名称、出版社及定价。
     select 图书名称,出版社名称,定价
     from book
@@ -192,7 +192,7 @@ insert into borrow (借书证号,图书编号,借阅时间) values('JY0006','GBZ
 # 14、查询reader表中年龄大于20或性别为女的读者姓名、性别及年龄。
     select 姓名,性别,年龄
     from reader
-    where 年龄 >20 or 性别="女";
+    where 年龄 >20 or 性别='女';
 # 15、查询book表中清华大学出版社、人民邮电出版社和高等教育出版社出版的图书名称和价格。
     select  图书名称,定价
     from book
@@ -248,13 +248,27 @@ insert into borrow (借书证号,图书编号,借阅时间) values('JY0006','GBZ
 
 #查询三
 # 1、按出版社分别查询book表中每个出版社出版的图书数量。
-
+    select 出版社名称,count('图书编号')
+    from book
+    group by 出版社名称;
 # 2、按出版社分别查询book表中每个出版社出版定价低于35元的图书数量。
-
+    select 出版社名称,count('图书编号')
+    from book
+    where 定价<35
+    group by 出版社名称;
 # 3、按性别分别查询reader表中男、女读者的人数。
-
+    select count('性别') as '男',6-count('性别') as '女'
+    from reader
+    where 性别='男';
+    #group by
+    select 性别,count(性别)
+    from  reader
+    group by 性别;
 # 4、按性别分别查询reader表中年龄大于20的男、女读者的人数。
-
+    select 性别,count(借书证号)
+    from reader
+    where 年龄>20
+    group by 性别;
 # 5、统计每个读者借书的本数。
 
 # 6、查询借书数目在2本及以上的读者姓名。
