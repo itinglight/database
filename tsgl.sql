@@ -270,9 +270,13 @@ insert into borrow (借书证号,图书编号,借阅时间) values('JY0006','GBZ
     where 年龄>20
     group by 性别;
 # 5、统计每个读者借书的本数。
+    select 姓名,count(图书编号) as '借书的本数'
+    from reader,borrow
+    where reader.借书证号=borrow.借书证号
+    group by 姓名;
 
 # 6、查询借书数目在2本及以上的读者姓名。
-
+   
 # 7、查询读者周欣的借书证号和还书时间。
 
 # 8、查询图书编号为GBZT0002的图书名称和借阅日期。
