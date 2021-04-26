@@ -274,9 +274,12 @@ insert into borrow (借书证号,图书编号,借阅时间) values('JY0006','GBZ
     from reader,borrow
     where reader.借书证号=borrow.借书证号
     group by 姓名;
-
 # 6、查询借书数目在2本及以上的读者姓名。
-   
+    select 姓名
+    from reader,borrow
+    where borrow.借书证号=reader.借书证号
+    group by reader.借书证号,姓名
+    having count(borrow.图书编号)>=2;
 # 7、查询读者周欣的借书证号和还书时间。
 
 # 8、查询图书编号为GBZT0002的图书名称和借阅日期。
